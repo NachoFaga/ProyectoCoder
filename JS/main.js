@@ -1,14 +1,3 @@
-const toggle = document.querySelector('.toggle')
-const links = document.querySelector('.links')
-
-toggle.addEventListener('click', () => {
-    toggle.classList.toggle('rotate')
-    links.classList.toggle('active')
-})
-
-
-/* Lo de arriba no lo hice yo */
-
 
 let testJS = 5 
 
@@ -33,20 +22,18 @@ if((servicio == "Visita") || (servicio == "Presupuesto")){
     alert("Ingrese una opcion valida porfavor.")
 }
 
+const clientes = [
+    {cliente: "Adolfo", correo: "Adolfito44@hotmail.com"},
+    {cliente: "Roberto", correo:"Robertito@gmail.com"},
+    {cliente: "Goku", correo:"GokuDBZ@gmail.com"},
+];
 
+clientes.push ({cliente: "Eminem", correo:"d12@gmail.com"});
 
-function presupuesto (primerNumero, segundoNumero, operacion){
-    switch (operacion) {
-        case "+":
-            return primerNumero + segundoNumero
-        case "-":
-            return primerNumero - segundoNumero
-        case "*":
-            return primerNumero * segundoNumero
-        case "/":
-            return primerNumero / segundoNumero
-        default:
-            return primerNumero * segundoNumero
-    }
-}
-console.log(presupuesto(10, 2, "*"));
+const cliente = clientes.map ((el) => el.cliente)
+
+console.log(cliente)
+
+const correo = clientes.map ((el) => el.correo)
+
+console.log(correo)
