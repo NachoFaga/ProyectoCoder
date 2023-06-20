@@ -1,39 +1,136 @@
+let listaEmpleados = [];
 
-let testJS = 5 
-
-if (testJS == 5){
-    console.log("El JS funciona correctamente!")
+const objEmpleado = {
+    id: '',
+    nombre: '',
+    puesto: ''
 }
 
-let nombreUsuario = prompt("Hola bienvendio! cual es tu nombre?")
+let editando = false;
 
-if (nombreUsuario == "") {
-    alert("Hola?")
+const formulario = document.querySelector('#formulario');
+const nombreInput = document.querySelector('#nombre');
+const puestoInput = document.querySelector('#puesto');
+const btnAgregarInput = document.querySelector('#btnAgregar');
+
+formulario.addEventListener('submit', validarFormulario);
+
+function validarFormulario(e) {
+    e.preventDefault();
+
+    if(nombreInput.value === '' || puestoInput.value === '') {
+        alert('Todos los campos se deben llenar');
+        return;
+    }
+
+    if(editando) {
+        editarEmpleado();
+        editando = false;
+    } else {
+        objEmpleado.id = Date.now();
+        objEmpleado.nombre = nombreInput.value;
+        objEmpleado.puesto = puestoInput.value;
+
+        agregarEmpleado();
+    }
 }
-else {
-    alert("Bienvenido, " + nombreUsuario + "!")
+
+function agregarEmpleado() {
+
+    listaEmpleados.push({...objEmpleado});
+
+    mostrarEmpleados();
+
+    formulario.reset();
+    limpiarObjeto();
 }
 
-let servicio = prompt("Un gusto " + nombreUsuario +", Estas aqui de 'Visita' o buscas 'Presupuesto'?");
-
-if((servicio == "Visita") || (servicio == "Presupuesto")){
-    alert("Seleccionaste " + servicio + ".")
-}else{
-    alert("Ingrese una opcion valida porfavor.")
+function limpiarObjeto() {
+    objEmpleado.id = '';
+    objEmpleado.nombre = '';
+    objEmpleado.puesto = '';
 }
 
-const clientes = [
-    {cliente: "Adolfo", correo: "Adolfito44@hotmail.com"},
-    {cliente: "Roberto", correo:"Robertito@gmail.com"},
-    {cliente: "Goku", correo:"GokuDBZ@gmail.com"},
-];
+function mostrarEmpleados() {
+    limpiarHTML();
 
-clientes.push ({cliente: "Eminem", correo:"d12@gmail.com"});
+    const divEmpleados = document.querySelector('.div-empleados');
+    
+    listaEmpleados.forEach(empleado => {
+        const {id, nombre, puesto} = empleado;
 
-const cliente = clientes.map ((el) => el.cliente)
+        const parrafo = document.createElement('p');
+        parrafo.textContent = `${id} - ${nombre} - ${puesto} - `;
+        parrafo.dataset.id = id;
 
-console.log(cliente)
+        const editarBoton = document.createElement('button');
+        editarBoton.onclick = () => cargarEmpleado(empleado);
+        editarBoton.textContent = 'Editar';
+        editarBoton.classList.add('btn', 'btn-editar');
+        parrafo.append(editarBoton);
 
-const correo = clientes.map ((el) => el.correo)
+        const eliminarBoton = document.createElement('button');
+        eliminarBoton.onclick = () => eliminarEmpleado(id);
+        eliminarBoton.textContent = 'Eliminar';
+        eliminarBoton.classList.add('btn', 'btn-eliminar');
+        parrafo.append(eliminarBoton);
 
-console.log(correo)
+        const hr = document.createElement('hr');
+
+        divEmpleados.appendChild(parrafo);
+        divEmpleados.appendChild(hr);
+    });
+}
+
+function cargarEmpleado(empleado) {
+    const {id, nombre, puesto} = empleado;
+
+    nombreInput.value = nombre;
+    puestoInput.value = puesto;
+
+    objEmpleado.id = id;
+
+    formulario.querySelector('button[type="submit"]').textContent = 'Actualizar';
+    
+    editando = true;
+}
+
+function editarEmpleado() {
+
+    objEmpleado.nombre = nombreInput.value;
+    objEmpleado.puesto = puestoInput.value;
+
+    listaEmpleados.map(empleado => {
+
+        if(empleado.id === objEmpleado.id) {
+            empleado.id = objEmpleado.id;
+            empleado.nombre = objEmpleado.nombre;
+            empleado.puesto = objEmpleado.puesto;
+
+        }
+
+    });
+
+    limpiarHTML();
+    mostrarEmpleados();
+    formulario.reset();
+
+    formulario.querySelector('button[type="submit"]').textContent = 'Agregar';
+    
+    editando = false;
+}
+
+function eliminarEmpleado(id) {
+
+    listaEmpleados = listaEmpleados.filter(empleado => empleado.id !== id);
+
+    limpiarHTML();
+    mostrarEmpleados();
+}
+
+function limpiarHTML() {
+    const divEmpleados = document.querySelector('.div-empleados');
+    while(divEmpleados.firstChild) {
+        divEmpleados.removeChild(divEmpleados.firstChild);
+    }
+}

@@ -2,99 +2,170 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
+
 
 body {
-  background: #092236;
-  overflow: hidden;
+  background-color: #b6eeff;
 }
 
-nav {
-  background: #021222;
-  height: 80px;
-  position: relative;
-}
-
-.container {
-  margin: auto;
+.div-titulo {
+  width: 100%;
+  height: 100px;
   display: flex;
-  justify-content: space-between;
-  max-width: 1000px;
-  line-height: 80px;
-  z-index: 100;
+  justify-content: center;
+  align-items: center;
 }
 
-.container-logo {
-  margin-left: 20px;
-  z-index: 100;
-  cursor: pointer;
-}
-
-.container-logo h2 {
-  color: #95bdd8;
+.div-titulo h1 {
   font-weight: 300;
-  font-size: 35px;
-  letter-spacing: 2px;
 }
 
-.container-logo h2 span {
-  color: #0590ec;
-  font-weight: 700;
+.contenedor {
+  width: 100%;
+  height: calc(100vh - 100px);
+  display: flex;
+  justify-content: center;
 }
 
-.links .link {
+/* FORMULARIO */
+.contenedor .div-formulario {
+  width: 30%;
+  height: 250px;
+  margin: 25px 25px;
+  background-color: rgb(132, 134, 135);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor .div-formulario h2 {
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: 2em;
+  color: whitesmoke;
+}
+
+.contenedor .div-formulario form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contenedor .div-formulario form input,
+.contenedor .div-formulario form button {
+  width: 60%;
+  padding: 10px 10px;
+  margin: 10px 10px;
+}
+
+/* LISTADO */
+
+.contenedor .div-listado {
+  width: 55%;
+  height: calc(100% - 50px);
+  margin: 15px 15px;
+  background-color: rgb(135, 132, 132);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contenedor .div-listado h2 {
+  margin-top: 10px;
+  font-weight: 300;
+  font-size: 2em;
+  color: whitesmoke;
+}
+
+.contenedor .div-listado .div-empleados {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 15px;
+  padding: 0 30px;
+}
+
+.contenedor .div-listado .div-empleados p {
+  margin: 10px 0;
+  font-size: 1em;
+  color: #ddd;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: none;
+  margin: 0 5px;
+  color: white;
+  border-radius: 50px;
+}
+
+.btn-editar {
+  background-color: green;
+}
+
+.btn-eliminar {
+  background-color: red;
+}
+
+/* INDEX */
+
+#index{
+  background-color: #b6eeff;
+}
+
+#micara{
+  max-width: 300px;
+  padding: 30px;
+  
+}
+
+#tecnicoInfo {
+  text-align: center;
+}
+
+#textoEdicion {
   display: inline-block;
+  height: 250px;
+  padding: 100px;
+  margin: 20px;
+  background-color: rgb(132, 134, 135);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
+  color: white;
 }
 
-.links .link a {
-  text-decoration: none;
-  color: #d1faf4;
-  font-size: 20px;
-  margin: 0 25px;
-  letter-spacing: 3px;
-  transition: 0.3s;
+#botoncontacto {
+  margin: 20px;
+  bottom:5%;
+  position: relative;
+  width: 30%;
+  height: 250px;
+  margin: 20px;
+  background-color: rgb(132, 134, 135);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 10px 10px rgba(0, 0, 0, 0.3);
 }
-
-.links .link a:hover {
-  color: #487abb;
-}
-
-.toggle {
-  color: #d1faf4;
-  margin-right: 20px;
-  font-size: 30px;
-  transform: rotate(90deg);
-  cursor: pointer;
-  transition: 0.3s;
-  display: none;
-}
-
-.rotate {
-  transform: rotate(180deg);
-}
-
-@media screen and (max-width: 800px) {
-  .toggle {
-    display: inline-block;
-  }
-  .links {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background: #021222;
-    text-align: center;
-    overflow: hidden;
-    height: calc(100vh - 80px);
-    width: 100%;
-    z-index: -1;
-    top: -100vh;
-    transition: 0.5s;
-  }
-  .active {
-    top: 80px;
-  }
-  .links .link:hover {
-    background: #051c38;
-  }
-}/*# sourceMappingURL=main.css.map */
