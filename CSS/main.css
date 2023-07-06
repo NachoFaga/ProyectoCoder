@@ -139,9 +139,9 @@ hr {
   text-align: center;
 }
 
-#textoEdicion {
+
+#conocimientos {
   display: inline-block;
-  height: 250px;
   padding: 100px;
   margin: 20px;
   background-color: rgb(132, 134, 135);
@@ -159,7 +159,6 @@ hr {
   bottom:5%;
   position: relative;
   width: 30%;
-  height: 250px;
   margin: 20px;
   background-color: rgb(132, 134, 135);
   display: flex;

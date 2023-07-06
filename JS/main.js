@@ -1,3 +1,5 @@
+document.getElementById("clientesLista").style.display = "none";
+
 let listaEmpleados = [];
 
 const objEmpleado = {
@@ -30,8 +32,8 @@ function validarFormulario(e) {
         objEmpleado.id = Date.now();
         objEmpleado.nombre = nombreInput.value;
         objEmpleado.puesto = puestoInput.value;
-
         agregarEmpleado();
+
     }
 }
 
@@ -43,6 +45,8 @@ function agregarEmpleado() {
 
     formulario.reset();
     limpiarObjeto();
+
+
 }
 
 function limpiarObjeto() {
@@ -134,3 +138,25 @@ function limpiarHTML() {
         divEmpleados.removeChild(divEmpleados.firstChild);
     }
 }
+
+
+var button = document.getElementById('btnAdm')
+
+function administrar(){
+    
+    var question = prompt("Ingrese contraseña de administrador:");
+    var pass = "admin";
+
+  if(question === pass){
+        validar();
+    }else{
+        alert("Contraseña invalida.")
+    }
+
+    function validar(){
+        document.getElementById("clientesLista").style.display = "flex";
+    }  
+}
+
+//localStorage.clear()
+
